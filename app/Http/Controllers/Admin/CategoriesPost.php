@@ -30,14 +30,13 @@ class CategoriesPost extends Controller
     public function index(){
         $all_categories = Category::orderBy('updated_at','desc')->get();
 
-        // カテゴリー毎の選択された数を取得
         // $categoryCount = CategoryPost::count();
         $categoryCounts = [];
         foreach ($all_categories as $category) {
             $categoryCounts[$category->id] = CategoryPost::where('category_id', $category->id)->count();
         }
 
-        // Uncategorized 投稿数を取得
+        // Uncategorized
         $uncategorizedCount = Post::whereDoesntHave('categoryPost')->count();
 
         return view('admin.categories.index',compact('all_categories','categoryCounts','uncategorizedCount'));

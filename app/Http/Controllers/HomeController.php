@@ -42,7 +42,7 @@ class HomeController extends Controller
         return $home_posts;
     }
 
-    //提案ユーザーの人数を制限して返す
+    
     public function getSuggestedUsers($limit = null){
         $all_users = $this->user->all()->except(Auth::user()->id);
         $suggested_user = [];
@@ -53,7 +53,7 @@ class HomeController extends Controller
             }
         }
 
-        // 引数に渡された$limitがあれば、その数だけ返す
+        
         if ($limit) {
         return array_slice($suggested_user, 0, $limit);
         }
@@ -61,9 +61,9 @@ class HomeController extends Controller
         return $suggested_user;
     }
 
-    //提案される全てのユーザーを表示
+   
     public function showAllSuggestedUsers(){
-        $suggested_users = $this->getSuggestedUsers(); // 制限なしで全てのユーザーを取得
+        $suggested_users = $this->getSuggestedUsers(); 
     
         return view('users.suggesteduser')
             ->with('suggested_users', $suggested_users);
@@ -88,12 +88,9 @@ class HomeController extends Controller
     
     public function index() {
 
-        // 提案ユーザーを全て取得
-        $suggested_users = collect($this->getSuggestedUsers()); // 状態がアクティブなユーザーに絞る
-            // ランダムに並び替え（必要なら）
-                                
-    
-        // 提案ユーザーが5人以上なら4人に制限
+        
+        $suggested_users = collect($this->getSuggestedUsers()); 
+
         $limited_suggested_users = $suggested_users->take(4);
     
         $all_posts = $this->getHomePosts();
@@ -102,7 +99,7 @@ class HomeController extends Controller
     }
 
     public function search(Request $request){
-        // ユーザー表のnameカラムに対して部分一致検索を行う
+        
         $users = $this->user->where('name','like','%'. $request->search. '%')->get();
         
         return view('users.search')
@@ -110,9 +107,9 @@ class HomeController extends Controller
                 ->with('search',$request->search);
     }
 
-    //いいねしたユーザーの名前を検索すると途中
+   
     public function likesearch(Request $request){
-        // ユーザー表のnameカラムに対して部分一致検索を行う
+        
         $users = $this->user->where('name','like','%'. $request->search. '%')->get();
         
         return view('users.search')
@@ -121,7 +118,7 @@ class HomeController extends Controller
     }
 
     public function searchUser(Request $request){
-        // ユーザー表のnameカラムに対して部分一致検索を行う
+        
         $users = $this->user->where('name','like','%'. $request->search. '%')->get();
         
         return view('admin.users.index')

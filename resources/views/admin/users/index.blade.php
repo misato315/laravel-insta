@@ -77,6 +77,6 @@
         @endforeach
       </tbody>
     </table>
-    {{-- 下記linksを追加！！ --}}
+   
     {{$all_users->links()}}
 @endsection

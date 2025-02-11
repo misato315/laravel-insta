@@ -29,7 +29,7 @@
         
     </div>
     <div class="col-4">
-        <div class="row align-items-center mb-5 bg-white shadow-sm rounded-3 py-3">
+        <div class="row align-items-center mb-5 bg-white shadow-sm rounded-3 py-3 ps-2">
             <div class="col-auto">
                 <a href="{{route('profile.show',Auth::user()->id)}}">
                     @if (Auth::user()->avatar)

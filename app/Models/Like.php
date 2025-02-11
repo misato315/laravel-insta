@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-//HasFactoryはUSERモデルからコピしてくる
+
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -13,7 +13,7 @@ class Like extends Model
 
     public $timestamps = false;
 
-       // ユーザーとのリレーション
+       
        public function user()
        {
            return $this->belongsTo(User::class);

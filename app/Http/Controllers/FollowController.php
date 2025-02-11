@@ -15,8 +15,8 @@ class FollowController extends Controller
         $this->follow = $follow_model;
     }
 
-    #To follow a user
-    #フォローする
+   
+    #フォロー
     public function store($user_id){
         $this->follow->follower_id  = Auth::user()->id;
         $this->follow->following_id = $user_id;

@@ -15,6 +15,10 @@
 
     <title>{{ config('app.name') }} | @yield('title')</title>
 
+    <!-- Scripts -->
+    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+    {{-- <script src="{{ asset('js/app-BwNJRmJ1.js') }}"></script> --}}
+    
     <!-- Fonts -->
     {{-- faに変更 --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -25,13 +29,11 @@
      <!-- Bootstrap -->
      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
 
-    <!-- Scripts -->
-    {{-- @vite(['resources/sass/app.scss', 'resources/js/app.js']) --}}
-    <script src="{{ asset('js/app-BwNJRmJ1.js') }}"></script>
-   
+
 </head>
 <body>
-    <div id="app">
+    
+
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
@@ -152,7 +154,7 @@
                         
                     @endif
 
-                    <div class="col-9">
+                    <div class="{{request()->routeIs('message.view') ? 'col-12': 'col-9'}}">
                         @yield('content')
                     </div>
                 </div>

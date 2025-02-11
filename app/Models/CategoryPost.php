@@ -10,7 +10,7 @@ class CategoryPost extends Model
 {
     use HasFactory;
 
-    //単数形なので
+    
     protected $table = 'category_post';
     protected $fillable = ['category_id','post_id'];
     public $timestamps = false;

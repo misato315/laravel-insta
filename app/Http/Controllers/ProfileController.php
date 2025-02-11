@@ -1,11 +1,11 @@
 <?php
 
-#USERモデルをインポート、プライベートプロパティ,construct
+
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use Illuminate\Support\Facades\Auth;//忘れない！！
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 use App\Models\User;
@@ -23,16 +23,15 @@ class ProfileController extends Controller
 
         $user = $this->user->findOrFail($id);
 
-        // クエリパラメータでタブを決める
-        $tab = $request->query('tab', 'posts');  // デフォルトで 'posts' タブを表示
+        
+        $tab = $request->query('tab', 'posts'); 
 
-        // ユーザーが投稿したポスト
         $posts = $user->posts;
 
-        // ユーザーがブックマークしたポスト
+       
         $bookmarkedPosts = $user->bookmarkedPosts;
 
-        // ユーザーがいいねしたポスト
+        
         $likedPosts = $user->likedPosts;
 
         return view('users.profile.show', compact('user', 'posts', 'bookmarkedPosts','likedPosts', 'tab'));
@@ -70,13 +69,13 @@ class ProfileController extends Controller
     // パスワード変更
     public function passwordUpdate(Request $request,$id){
         $request->validate([
-            'password' => 'required|current_password', //現在のパスワードを確認
-            'password_new' => 'required|string|min:8|confirmed'//新しいパスワード（8文字以上、確認が一致すること）
+            'password' => 'required|current_password', 
+            'password_new' => 'required|string|min:8|confirmed'
         ]);
 
         $user = $this->user->findOrFail($id);
 
-        $user->password = Hash::make($request->password_new);//新しいパスワードをハッシュ化して保存
+        $user->password = Hash::make($request->password_new);
         $user->save();
 
         return redirect()->route('profile.show',$id)->with('status', 'Password updated successfully!'); 

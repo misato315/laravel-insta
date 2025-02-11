@@ -76,7 +76,6 @@ class User extends Authenticatable
         //Then, from that list, search fo the Auth user from the follower column (where('follower_id',Auth::user()->id))
     }
 
-    #現在のユーザー（$this）が特定のユーザー（ログインユーザー）をフォローしているかどうかを確認する
     public function isFollowing(){
         return $this->following()->where('following_id',Auth::user()->id)->exists();
     }
@@ -87,13 +86,12 @@ class User extends Authenticatable
         return $this->hasMany(Bookmark::class);
     }
 
-    #ユーザーがブックマークした投稿を取得する
     public function bookmarkedPosts(){
 
         return $this->belongsToMany(Post::class, 'bookmarks');
     }
 
-    #ユーザーがいいねした投稿を取得する
+  
     public function likedPosts(){
 
         return $this->belongsToMany(Post::class, 'likes');

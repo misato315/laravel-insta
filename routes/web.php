@@ -8,6 +8,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\FollowController;
 use App\Http\Controllers\BookmarkController;
+use App\Http\Controllers\MessageController;
 
 use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\Admin\PostsController;
@@ -47,6 +48,8 @@ Route::group(['middleware'=>'auth'],function(){
     Route::get('/profile/{id}/followers',[ProfileController::class,'followers'])->name('profile.followers');
     Route::get('/profile/{id}/following',[ProfileController::class,'following'])->name('profile.following');
 
+    #MESSAGE
+    Route::get('/messages', [MessageController::class, 'view'])->name('message.view');
 
     #LIKE
     Route::post('/like/{post_id}/store',[LikeController::class,'store'])->name('like.store');

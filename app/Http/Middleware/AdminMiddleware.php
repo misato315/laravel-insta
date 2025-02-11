@@ -6,7 +6,6 @@ use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-//下記を追加した
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 
@@ -24,7 +23,7 @@ class AdminMiddleware
             return $next($request);
         }
         
-        //もし、ユーザーがログインしていない、または管理者でない場合、index ルートにリダイレクトされる
+        
         return redirect()->route('index');
     }
 }
